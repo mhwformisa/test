@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시립대 이런 맛집이!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Poor+Story&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header">
+                <a href="main.html">
+                    <img src="image/uos.png">
+                </a>
+                <ul class="nav">
+                    <li><a href="#">SHOP</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <ul class="amount">
+            <li>
+                <div>
+                    <div class="contents1">등록된 음식점 수</div>
+                    <div class="result">999개</div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="contents1">현재까지의 검색량</div>
+                    <div class="result">99999번</div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="contents1">평점 수</div>
+                    <div class="result">999개</div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="contents1">만족도</div>
+                    <div class="result">★★★★★ 5.0</div>
+                </div>
+            </li>
+        </ul>
+        <div class="main_text0">
+            <h1>검색하기</h1>
+            <div class="contents1">엄선된 맛집 정보를 바탕으로 여러분들에게 다양한 서비스를 제공합니다.</div>
+            <ul class="icon">
+                <li>
+                    <div class="icon_img">
+                        <img src="image/icon1.png">
+                    </div>
+                    <div class="result">음식점 찾기</div>
+                    <div class="contents1">
+                        원하시는 가게의 이름을 직접 검색하세요.
+                    </div>
+                    <div class="searchbox">
+                        <input type="text" placeholder="검색어 입력">
+                        <button>검색</button>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="icon_img">
+                        <img src="image/icon2.png">
+                    </div>
+                    <div class="result">음식 카테고리별 찾기</div>
+                    <div class="contents1">
+                        카테고리별로 원하는 음식점을 쉽게 찾아보세요.
+                    </div>
+                    <a href="category.html">
+                        <div class="search1">더보기</div>
+                    </a>
+                </li>
+
+                <li>
+                    <div class="icon_img">
+                        <img src="image/icon3.png">
+                    </div>
+                    <div class="result">포장 및 배달 / 예약하기</div>
+                    <div class="contents1">
+                        포장, 배달, 예약 등의 여러 서비스를 즐겨보세요.
+                    </div>
+                    <div class="search1">더보기</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main_text1">
+            <h1>맛집 추천 서비스</h1>
+            <div class="contents1">오늘은 이 음식점, 어떠신가요?</div>
+            <div id="slider-wrap">
+
+                <ul id="slider">
+                    <li>
+                        <div>
+                        </div>
+                        <img src="image/slide1.png">
+                    </li>
+            
+                    <li>
+                        <div>
+                        </div>
+                        <img src="image/slide2.png">
+                    </li>
+            
+                    <li>
+                        <div>
+                        </div>
+                        <img src="image/slide3.png">
+                    </li>
+            
+
+                </ul>
+            
+                <div class="slider-btns" id="next"><span>▶</span></div>
+                <div class="slider-btns" id="previous"><span>◀</span></div>
+            
+                <div id="slider-pagination-wrap">
+                    <ul>
+                    </ul>
+                </div>
+                <script>
+                    var slideWrapper = document.getElementById('slider-wrap');
+                    //current slideIndexition
+                    var slideIndex = 0;
+                    //items
+                    var slides = document.querySelectorAll('#slider-wrap ul li');
+                    //number of slides
+                    var totalSlides = slides.length;
+                    //get the slide width
+                    var sliderWidth = slideWrapper.clientWidth;
+                    //set width of items
+                    slides.forEach(function (element) {
+                        element.style.width = sliderWidth + 'px';
+                    })
+                    //set width to be 'x' times the number of slides
+                    var slider = document.querySelector('#slider-wrap ul#slider');
+                    slider.style.width = sliderWidth * totalSlides + 'px';
+
+                    // next, prev
+                    var nextBtn = document.getElementById('next');
+                    var prevBtn = document.getElementById('previous');
+                    nextBtn.addEventListener('click', function () {
+        plusSlides(1);
+    });
+                    prevBtn.addEventListener('click', function () {
+                        plusSlides(-1);
+                    });
+
+                    // hover
+                    slideWrapper.addEventListener('mouseover', function () {
+                        this.classList.add('active');
+                        clearInterval(autoSlider);
+                    });
+                    slideWrapper.addEventListener('mouseleave', function () {
+                        this.classList.remove('active');
+                        autoSlider = setInterval(function () {
+                            plusSlides(1);
+                        }, 3000);
+                    });
+
+
+                    function plusSlides(n) {
+                        showSlides(slideIndex += n);
+                    }
+
+                    function currentSlides(n) {
+                        showSlides(slideIndex = n);
+                    }
+
+                    function showSlides(n) {
+                        slideIndex = n;
+                        if (slideIndex == -1) {
+                            slideIndex = totalSlides - 1;
+                        } else if (slideIndex === totalSlides) {
+                            slideIndex = 0;
+                        }
+                    
+                        slider.style.left = -(sliderWidth * slideIndex) + 'px';
+                        pagination();
+                    }
+
+                    //pagination
+                    slides.forEach(function () {
+                        var li = document.createElement('li');
+                        document.querySelector('#slider-pagination-wrap ul').appendChild(li);
+                    })
+
+                    function pagination() {
+                        var dots = document.querySelectorAll('#slider-pagination-wrap ul li');
+                        dots.forEach(function (element) {
+                            element.classList.remove('active');
+                        });
+                        dots[slideIndex].classList.add('active');
+                    }
+
+                    pagination();
+                    var autoSlider = setInterval(function () {
+                        plusSlides(1);
+                    }, 3000);
+                </script>
+
+            </div>
+        </div>
+
+        <div class="main_text2">
+            <ul>
+                <li>
+                    <h1>CONTACT</h1>
+                    <div>우리에게 파트너십을 신청하거나, 고객이 되어주세요.</div>
+                    <div class="more2">더 알아보기</div>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <h6>About</h6>
+                  <p class="text-justify"> 시경연 2022년도 세미나를 위한 테스트 서버입니다.</p>
+                </div>
+      
+                <div class="col-xs-6 col-md-3">
+                  <h6>Categories</h6>
+                  <ul class="footer-links">
+                    <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+                    <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+                    <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+
+                  </ul>
+                </div>
+      
+                <div class="col-xs-6 col-md-3">
+                  <h6>Quick Links</h6>
+                  <ul class="footer-links">
+                    <li><a href="http://scanfcode.com/about/">About Us</a></li>
+                    <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                    <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+                    <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                    <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                  </ul>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+               <a href="#">Scanfcode</a>.
+                  </p>
+                </div>
+      
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
