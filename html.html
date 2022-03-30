@@ -1,0 +1,105 @@
+html
+
+        <div class="section">
+            <input type="radio" name="slide" id="slide1" checked>
+            <input type="radio" name="slide" id="slide2">
+            <input type="radio" name="slide" id="slide3">
+
+            <div class="sliedwrap">
+                <ul class="slidelist">
+                    <li>
+                        <a>
+                            <label for="slide3" class="left"></label>
+                            <img src="image/slide1.png">
+                            <label for="slide2" class="right"></label>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <label for="slide1" class="left"></label>
+                            <img src="image/slide2.png">
+                            <label for="slide3" class="right"></label>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <label for="slide2" class="left"></label>
+                            <img src="image/slide3.png">
+                            <label for="slide1" class="right"></label>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+#css2
+
+.section input[id="slide"] {
+    display: none;
+}
+.section .slidewrap{
+    max-width: 1200px;
+    margin:0 auto;
+    overflow: hidden;
+}
+.section .slidelist {
+    white-space: nowrap;
+    font-size: 0;
+}
+
+.section .slidelist > li{
+    display: inline-block;
+    vertical-align: middle;
+    width:100%;
+    transition: all .5s;
+}
+
+.section .slidelist > li > a{
+    display: block;
+    position: relative;
+}
+
+.section .slidelist > li > a > img{
+    width:100%;
+}
+
+.section .slidelist label{
+    position: absolute;
+    z-index:10;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 50px;
+    cursor: pointer;
+}
+
+.section .slidelist .left {
+    left: 30px;
+    background: url('/image/left.png') center center / 100% no-repeat
+}
+.section .slidelist .right {
+    right: 30px;
+    background: url('/image/right.png') center center / 100% no-repeat
+}
+
+
+.section [id="slide1"]:checked~.slidewrap .slidelist > li {transform: translateX(0%);}
+.section [id="slide2"]:checked~.slidewrap .slidelist > li {transform: translateX(-100%);}
+.section [id="slide3"]:checked~.slidewrap .slidelist > li {transform: translateX(-200%);}
+
+
+
+h1{
+    background: white;
+    padding-top : 30px;
+    text-align: center;
+    line-height: 200%;
+}
+
+.marketing2{
+    background: white;
+    text-align: center;
+    line-height: 200%;
+    padding-bottom : 30px;
+}
